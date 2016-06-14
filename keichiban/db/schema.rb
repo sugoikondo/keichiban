@@ -11,11 +11,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160605124224) do
+ActiveRecord::Schema.define(version: 20160605130558) do
 
-  create_table "places", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table "genres", force: :cascade do |t|
+    t.string   "genre",      limit: 8, null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
   end
 
+  create_table "places", force: :cascade do |t|
+    t.string   "name",       limit: 32,                          null: false
+    t.decimal  "longitude",              precision: 9, scale: 6, null: false
+    t.decimal  "latitude",               precision: 9, scale: 6, null: false
+    t.string   "postcode",   limit: 8,                           null: false
+    t.string   "address",    limit: 256
+    t.string   "about",      limit: 256
+    t.datetime "created_at",                                     null: false
+    t.datetime "updated_at",                                     null: false
+  end
+
+  create_table "places_genres", force: :cascade do |t|
+    t.integer  "place_id",   limit: 4, null: false
+    t.integer  "genre_id",   limit: 4, null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "places_genres", ["genre_id"], name: "index_places_genres_on_genre_id", using: :btree
+  add_index "places_genres", ["place_id"], name: "index_places_genres_on_place_id", using: :btree
+
+  add_foreign_key "places_genres", "genres"
+  add_foreign_key "places_genres", "places"
 end

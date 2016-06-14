@@ -1,12 +1,24 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="mapApp">
 <head>
-  <title>Keichiban</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDyiWjA5Bvul1tOSBqPEsnsoTXi4zkXEns' %>
   <%= csrf_meta_tags %>
+
 </head>
 <body>
+<nav>
+  <ul class="right hide-on-med-and-down">
+    <li><a href="#!">First Sidebar Link</a></li>
+    <li><a href="#!">Second Sidebar Link</a></li>
+  </ul>
+  <ul id="slide-out" class="side-nav">
+    <li><a href="#!">First Sidebar Link</a></li>
+    <li><a href="#!">Second Sidebar Link</a></li>
+  </ul>
+  <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu">menu</i></a>
+</nav>
 
 <%= yield %>
 
